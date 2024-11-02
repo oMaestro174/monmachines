@@ -110,6 +110,9 @@ Clone este repositório para o seu servidor web local ou remoto.
 ```shell
 git clone https://github.com/oMaestro174/monmachines.git
 ```
+> 
+>Caso não tenho o [GIT](https://git-scm.com/downloads) instalado ou se preferir,  
+>você poderá baixar os arquivos diretamente do site do github em: [oMaestro174/monmachines](https://github.com/oMaestro174/monmachines/archive/refs/heads/main.zip) 
 
 Acesse o diretório monmachines
 ```shell
@@ -146,5 +149,4 @@ Acesse o arquivo index.html pelo servidor web para visualizar a aplicação.
 Contribuições são bem-vindas! Por favor, sinta-se à vontade para submeter pull requests ou criar issues para melhorias e correções de bugs.
 
 ### 📄 Licença
-Este projeto é licenciado sob a licença MIT.
-
+Este projeto é licenciado sob a licença do [MIT](/LICENSE)
