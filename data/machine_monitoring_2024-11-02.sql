@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Servidor:                     192.168.0.104
+-- Servidor:                     192.168.0.106
 -- Versão do servidor:           8.0.40 - MySQL Community Server - GPL
 -- OS do Servidor:               Linux
 -- HeidiSQL Versão:              12.8.0.6908
@@ -25,30 +25,30 @@ DROP TABLE IF EXISTS `machines`;
 CREATE TABLE IF NOT EXISTS `machines` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `status` enum('running','stopped','maintenance','inactive','overload') NOT NULL,
+  `status` enum('running','stopped','maintenance','inactive','overload','morra') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `last_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Copiando dados para a tabela machine_monitoring.machines: ~3 rows (aproximadamente)
 INSERT INTO `machines` (`id`, `name`, `status`, `last_updated`) VALUES
-	(1, 'Machine 1', 'stopped', '2024-11-02 14:39:58'),
+	(1, 'Machine 1', 'maintenance', '2024-11-02 20:27:12'),
 	(2, 'Machine 2', 'overload', '2024-11-02 14:39:04'),
-	(3, 'Machine 3', 'maintenance', '2024-11-02 14:38:23');
+	(3, 'Machine 3', 'morra', '2024-11-02 20:35:48');
 
 -- Copiando estrutura para tabela machine_monitoring.status_history
 DROP TABLE IF EXISTS `status_history`;
 CREATE TABLE IF NOT EXISTS `status_history` (
   `id` int NOT NULL AUTO_INCREMENT,
   `machine_id` int NOT NULL,
-  `status` enum('running','stopped','maintenance','inactive','overload') NOT NULL,
+  `status` enum('running','stopped','maintenance','inactive','overload','morra') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `changed_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `machine_id` (`machine_id`),
   CONSTRAINT `status_history_ibfk_1` FOREIGN KEY (`machine_id`) REFERENCES `machines` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela machine_monitoring.status_history: ~9 rows (aproximadamente)
+-- Copiando dados para a tabela machine_monitoring.status_history: ~24 rows (aproximadamente)
 INSERT INTO `status_history` (`id`, `machine_id`, `status`, `changed_at`) VALUES
 	(1, 2, 'running', '2024-11-02 05:03:00'),
 	(2, 3, 'maintenance', '2024-11-02 05:03:10'),
@@ -63,7 +63,17 @@ INSERT INTO `status_history` (`id`, `machine_id`, `status`, `changed_at`) VALUES
 	(11, 2, 'overload', '2024-11-02 14:39:04'),
 	(12, 1, 'overload', '2024-11-02 14:39:35'),
 	(13, 1, 'maintenance', '2024-11-02 14:39:49'),
-	(14, 1, 'stopped', '2024-11-02 14:39:58');
+	(14, 1, 'stopped', '2024-11-02 14:39:58'),
+	(15, 1, 'running', '2024-11-02 20:24:25'),
+	(16, 1, 'maintenance', '2024-11-02 20:24:26'),
+	(17, 1, 'inactive', '2024-11-02 20:24:26'),
+	(18, 1, 'overload', '2024-11-02 20:24:27'),
+	(19, 1, 'maintenance', '2024-11-02 20:27:09'),
+	(20, 1, 'stopped', '2024-11-02 20:27:09'),
+	(21, 1, 'running', '2024-11-02 20:27:10'),
+	(22, 1, 'overload', '2024-11-02 20:27:11'),
+	(23, 1, 'inactive', '2024-11-02 20:27:11'),
+	(24, 1, 'maintenance', '2024-11-02 20:27:12');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
