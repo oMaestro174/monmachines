@@ -86,11 +86,9 @@ monmachines/
 - Mantém um histórico das mudanças de status.
 
 ### 🖥️ Backend (PHP)
-- get_machines.php: Busca dados das máquinas e retorna como JSON.
-- update_status.php: Atualiza o status e registra no histórico.
-- status_history.php: Exibe uma tabela com o histórico de status.
-Configuração CSS para uma apresentação agradável.
-Ordenação por ordem decrescente de data.
+- `get_machines.php`: Busca dados das máquinas e retorna como JSON.
+- `update_status.php`: Atualiza o status e registra no histórico.
+- `status_history.php`: Exibe uma tabela com o histórico de status e configuração CSS para representar as cores dos status. Ordenação por ordem decrescente de data.
 
 ### 💻 Frontend (React)
 - Exibe uma lista de máquinas com status e imagens correspondentes.
@@ -99,9 +97,8 @@ Ordenação por ordem decrescente de data.
 
 ### 🔄 Fluxo de Dados
 
-
-- O React solicita dados ao get_machines.php periodicamente.
-- Ao clicar nos botões de status, o React envia uma requisição para update_status.php, que atualiza o banco de dados e retorna uma resposta.
+- O React solicita dados ao `get_machines.php` periodicamente.
+- Ao clicar nos botões de status, o React envia uma requisição para `update_status.php`, que atualiza o banco de dados e retorna uma resposta.
 - O React atualiza a interface com os novos dados.
 
 ### 🛠️ Configuração e Instalação
