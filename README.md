@@ -125,7 +125,7 @@ docker-compose up -d
 
 
 
-Para tudo funcionar precisa já ter o docker instalado e funcionando. Caso não saiba como instalar e configurar acesse aqui: <a href="https://docs.docker.com/engine/install/" target="_blank">https://docs.docker.com/engine/install/</a>.
+Para tudo funcionar precisa já ter o docker instalado e funcionando. Caso não saiba como instalar e configurar acesse aqui: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 Configure as credenciais do banco de dados no arquivo `conexao.php`, utilizado por `get_machines.php`, `update_status.php` e `status_history.php`.
 
