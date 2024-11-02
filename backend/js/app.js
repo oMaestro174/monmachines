@@ -52,6 +52,7 @@ function MachineMonitoring() {
               <button onClick={() => updateMachineStatus(machine.id, 'maintenance')}>Manutenção</button>
               <button onClick={() => updateMachineStatus(machine.id, 'inactive')}>Inativo</button>
               <button onClick={() => updateMachineStatus(machine.id, 'overload')}>Sobrecarga</button>
+              <button onClick={() => updateMachineStatus(machine.id, 'morra')}>morra</button>
             </div>
             <hr />
           </div>

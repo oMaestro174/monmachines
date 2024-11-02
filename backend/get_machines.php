@@ -13,6 +13,8 @@ function getImagePath($status) {
             return 'images/maintenance.png';
         case 'inactive':
             return 'images/inactive.png';
+        case 'morra':
+            return 'images/morra.png';
         case 'overload':
             return 'images/overload.png';
         default:
