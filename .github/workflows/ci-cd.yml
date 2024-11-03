@@ -1,0 +1,44 @@
+name: CI/CD for PHP MySQL Docker Application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build and start Docker containers
+      run: |
+        docker-compose up -d --build
+        docker ps -a
+
+    - name: Wait for MySQL to be ready
+      run: |
+        while ! docker exec mysql_db mysqladmin ping -h"localhost" --silent; do
+          sleep 1
+        done
+
+    #- name: Run database migrations
+      #run: |
+        #docker exec php_server php /var/www/html/migrations.php
+
+    - name: Run tests
+      run: |
+        docker exec php_server php /var/www/html/index.php
+
+    #- name: Stop Docker containers
+      #run: docker-compose down
+
+    # Adicione aqui os passos para deploy, se necessário
+    # - name: Deploy to production
+    #   run: |
+    #     # Seus comandos de deploy aqui
