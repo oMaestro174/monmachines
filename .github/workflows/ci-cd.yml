@@ -32,12 +32,12 @@ jobs:
         docker-compose up -d --build
         docker ps -a
 
-    # Aguardar o serviço MariaDB estar pronto para receber conexões
+    # Esperar até que o MariaDB esteja pronto usando o nome do contêiner 'mysql_db'
     - name: Wait for MariaDB to be ready
       run: |
-        until docker-compose exec db mysqladmin ping -h"127.0.0.1" --silent; do
+        until docker-compose exec mysql_db mysqladmin ping -h"127.0.0.1" --silent; do
           echo "Waiting for MariaDB to be ready..."
-          sleep 5
+          sleep 2
         done
 
     # Verificar se os contêineres estão em execução
