@@ -1,5 +1,5 @@
 <?php
-$host = 'mysql_db';  // Nome do serviço do MySQL no docker-compose.yml
+$host = 'mysql_db';  // Nome do serviço do MySQL no docker-compose.yml precisa ser esse no deploy
 $user = 'root';
 $password = 'Mudar@123!';
 $database = 'machine_monitoring';
