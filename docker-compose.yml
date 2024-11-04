@@ -2,24 +2,19 @@ version: '3.8'
 
 services:
   db:
-    image: mariadb:10.6
+    build:
+      context: .
+      dockerfile: Dockerfile.db
     container_name: mysql_db
-    environment:
-      MYSQL_ROOT_PASSWORD: Mudar@123!
-      MYSQL_DATABASE: machine_monitoring
-      MYSQL_USER: monitor
-      MYSQL_PASSWORD: Mudar@123!
     ports:
       - "3306:3306"
-    volumes:
-      - ./data:/docker-entrypoint-initdb.d
     networks:
       - app-network
 
   php:
     build:
       context: .
-      dockerfile: Dockerfile-php
+      dockerfile: Dockerfile.php
     container_name: php_server
     ports:
       - "80:80"
