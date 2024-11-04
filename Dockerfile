@@ -1,19 +1,19 @@
 FROM php:8.0-fpm
 
-# Instalar extensões PHP necessárias
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Install necessary packages and PHP extensions
+RUN apt-get update && apt-get install -y \
+    libmariadb-dev \
+    nginx \
+    && docker-php-ext-install mysqli pdo pdo_mysql
 
-# Instalar Nginx
-RUN apt-get update && apt-get install -y nginx
-
-# Configurar Nginx
+# Configure Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copiar arquivos do projeto
+# Copy project files
 COPY backend /var/www/html
 
-# Expor porta 80
+# Expose port 80
 EXPOSE 80
 
-# Iniciar Nginx e PHP-FPM
+# Start Nginx and PHP-FPM
 CMD ["sh", "-c", "nginx && php-fpm"]
