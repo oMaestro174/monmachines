@@ -1,14 +1,14 @@
 services:
   machine_monitoring_db:
-    image: mysql:8.0
+    image: mariadb:10.6
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-Mudar@123!}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-machine_monitoring}
-      MYSQL_USER: ${MYSQL_USER:-monitor}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-Mudar@123!}
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-Mudar@123!}
+      MARIADB_DATABASE: ${MYSQL_DATABASE:-machine_monitoring}
+      MARIADB_USER: ${MYSQL_USER:-monitor}
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD:-Mudar@123!}
     volumes:
       - ./data:/docker-entrypoint-initdb.d
-      - mysql_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
       interval: 10s
@@ -31,4 +31,4 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD:-Mudar@123!}
 
 volumes:
-  mysql_data:
+  mariadb_data:
