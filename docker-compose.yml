@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     image: mariadb:10.6
@@ -11,11 +13,13 @@ services:
       - "3306:3306"
     volumes:
       - ./data:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
 
   php:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-php
     container_name: php_server
     ports:
       - "80:80"
@@ -25,3 +29,9 @@ services:
       - db
     environment:
       - MYSQL_HOST=mysql_db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
