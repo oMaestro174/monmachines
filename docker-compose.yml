@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:8.0
+    image: mariadb:10.6
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: Mudar@123!
