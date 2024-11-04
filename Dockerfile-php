@@ -13,7 +13,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY backend /var/www/html
 
 # Expor porta 80
-EXPOSE 8800
+EXPOSE 80
 
 # Iniciar Nginx e PHP-FPM
 CMD ["sh", "-c", "nginx && php-fpm"]
