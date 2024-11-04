@@ -12,8 +12,8 @@ services:
       MYSQL_PASSWORD: Mudar@123!
     ports:
       - "3306:3306"
-    volumes:
-      - ./data:/docker-entrypoint-initdb.d
+    #volumes:
+      #- ./data:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -27,8 +27,8 @@ services:
     container_name: php_server
     ports:
       - "80:80"
-    volumes:
-      - ./backend:/var/www/html
+    #volumes:
+      #- ./backend:/var/www/html
     depends_on:
       db:
         condition: service_healthy
