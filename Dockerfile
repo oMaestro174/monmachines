@@ -12,6 +12,13 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copiar o arquivo de inicialização do banco de dados para o diretório esperado pelo MariaDB
 COPY data/machine_monitoring_2024-11-02.sql /docker-entrypoint-initdb.d/
 
+# Criar banco de dados e usuário
+RUN service mysql start && \
+    mysql -e "CREATE DATABASE IF NOT EXISTS machine_monitoring;" && \
+    mysql -e "CREATE USER 'monitor'@'localhost' IDENTIFIED BY 'Mudar@123!';" && \
+    mysql -e "GRANT ALL PRIVILEGES ON machine_monitoring.* TO 'monitor'@'localhost';" && \
+    mysql -e "FLUSH PRIVILEGES;"
+
 # Copiar arquivos do projeto para o diretório web
 COPY backend /var/www/html
 
