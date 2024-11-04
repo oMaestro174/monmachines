@@ -4,7 +4,7 @@ services:
   db:
     build:
       context: .
-      dockerfile: Dockerfile.db
+      dockerfile: Dockerfile-db
     container_name: mysql_db
     ports:
       - "3306:3306"
@@ -14,7 +14,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: Dockerfile.php
+      dockerfile: Dockerfile-php
     container_name: php_server
     ports:
       - "80:80"
