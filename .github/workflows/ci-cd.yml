@@ -45,9 +45,3 @@ jobs:
 
     - name: Stop Docker containers
       run: docker-compose down
-
-    # Add deployment steps here if needed
-    # - name: Deploy to production
-    #   if: github.ref == 'refs/heads/main'
-    #   run: |
-    #     # Add your deployment commands here
