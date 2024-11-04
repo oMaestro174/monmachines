@@ -22,4 +22,4 @@ COPY backend /var/www/html
 EXPOSE 80
 
 # Iniciar o wait-for-it para verificar o banco antes de iniciar o Nginx e PHP-FPM
-CMD ["./wait-for-it.sh", "db:3306", "--", "sh", "-c", "nginx && php-fpm"]
+CMD ["./wait-for-it.sh", "mysql_db:3306", "--", "sh", "-c", "nginx && php-fpm"]
