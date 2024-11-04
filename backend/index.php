@@ -60,7 +60,7 @@
     </script>
 </head>
 <body>
-    <h1>Monitoramento de Máquinas</h1>
+    <h1>Monitoramento de Máquinas Maristela vai ver</h1>
     <p id="ultima-atualizacao"></p>
     <div id="machines"></div>
 </body>
