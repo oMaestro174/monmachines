@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';  // Nome do serviço do MySQL no docker-compose.yml
+$host = 'easy.taguardado.net';  // Nome do serviço do MySQL no docker-compose.yml
 $user = 'root';
 $password = 'Mudar@123!';
 $database = 'machine_monitoring';
