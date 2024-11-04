@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Servidor:                     192.168.0.106
+-- Servidor:                     localhost
 -- Versão do servidor:           8.0.40 - MySQL Community Server - GPL
 -- OS do Servidor:               Linux
 -- HeidiSQL Versão:              12.8.0.6908
