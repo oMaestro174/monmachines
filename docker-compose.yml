@@ -1,27 +1,40 @@
+version: '3.8'
+
 services:
-  db:
+  machine_monitoring_db:
     image: mysql:8.0
-    container_name: mysql_db
     environment:
-      MYSQL_ROOT_PASSWORD: Mudar@123!
-      MYSQL_DATABASE: machine_monitoring
-      MYSQL_USER: monitor
-      MYSQL_PASSWORD: Mudar@123!
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-Mudar@123!}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-machine_monitoring}
+      MYSQL_USER: ${MYSQL_USER:-monitor}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-Mudar@123!}
     ports:
-      - "3306:3306"
+      - "${DB_PORT:-3306}:3306"
     volumes:
       - ./data:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  php:
+  machine_monitoring_php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php_server
     ports:
-      - "80:80"
+      - "${APP_PORT:-80}:80"
     volumes:
       - ./backend:/var/www/html
     depends_on:
-      - db
+      machine_monitoring_db:
+        condition: service_healthy
     environment:
-      - MYSQL_HOST=mysql_db
+      - MYSQL_HOST=machine_monitoring_db
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-machine_monitoring}
+      - MYSQL_USER=${MYSQL_USER:-monitor}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-Mudar@123!}
+
+volumes:
+  mysql_data:
