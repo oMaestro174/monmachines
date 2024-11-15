@@ -60,7 +60,7 @@
     </script>
 </head>
 <body>
-    <h1>Monitoramento de Máquinas DI </h1>
+    <h1>Monitoramento de Máquinas fromBad </h1>
     <p id="ultima-atualizacao"></p>
     <div id="machines"></div>
 </body>
