@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile-php # Dockerfile específico para o PHP
     container_name: php_server
     ports:
-      - "80:80"
+      - "8082:80"
     volumes:
       - ./backend:/var/www/html
     depends_on:
